@@ -10,9 +10,10 @@ export default function Layout() {
   return (
     <div className="flex h-screen bg-[var(--bg-main)] text-[var(--text-main)] overflow-hidden transition-colors duration-300">
       <Sidebar />
-      <div className={`flex flex-col flex-1 transition-all duration-300 bg-[#0a0a0c] ${sidebarOpen ? 'ml-64' : 'ml-20'}`}>
+      <div className={`flex flex-col flex-1 transition-all duration-300 bg-[#0a0a0c] ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-20'}`}>
         <Navbar />
-        <main className="flex-1 overflow-y-auto p-0  border-l border-t rounded-tl-xl border-[var(--border-main)]">
+        {/* <main className="flex-1 overflow-y-auto p-0  border-l border-t rounded-tl-xl border-[var(--border-main)]"> */}
+        <main className="flex-1 overflow-y-auto p-0  ">
           <Outlet />
         </main>
       </div>

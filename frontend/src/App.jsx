@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore.js';
 import Layout from './components/Layout.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -19,12 +19,16 @@ import SolvePage from './pages/SolvePage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import { useEffect, useState } from 'react';
 import SplashScreen from './Splash.jsx';
+import Landing1 from './pages/Landing1.jsx';
+import AuthPage from './pages/AuthPage.jsx';
+import api from './api/axios.js';
+import toast from 'react-hot-toast';
 
-function ProtectedRoute({ children }) {
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  console.log(isAuthenticated);
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
-}
+// function ProtectedRoute({ children }) {
+//   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+//   console.log(isAuthenticated);
+//   return isAuthenticated ? children : <Navigate to="/login" replace />;
+// }
 
 export default function App() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -36,14 +40,66 @@ export default function App() {
     // }, 4000);
   }, [])
 
+  const setAuth = useAuthStore((s) => s.setAuth);
+  const navigate = useNavigate();
+
+  const handleLogin = async ({ email, password }) => {
+    try {
+      const { data } = await api.post('/auth/login', { email, password });
+      setAuth(data.data.user, data.data.accessToken, data.data.refreshToken);
+      toast.success('Welcome back!');
+      navigate('/')
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Login failed');
+      return {
+        success: false,
+        redirectTo: "/login",
+      };
+    }
+  };
+
+  const handleSignup = async ({ name, email, password }) => {
+    try {
+      const { data } = await api.post('/auth/register', { name, email, password });
+      setAuth(data.data.user, data.data.accessToken, data.data.refreshToken);
+      toast.success('Account created! Welcome to NoteLM.');
+      navigate('/');
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Registration failed');
+      return {
+        success: false,
+        redirectTo: "/register",
+      };
+    }
+  };
+
   return (
     <>
       {splash ? <SplashScreen /> : <Routes>
+        <Route path="/landing1" element={<LandingPage />} />
+        <Route path="/landing" element={<Landing1 />} />
         {
           !isAuthenticated && <>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/" element={<Landing1 />} />
+            <Route path="/login1" element={<LoginPage />} />
+            <Route path="/register1" element={<RegisterPage />} />
+            <Route
+              path="/login"
+              element={<AuthPage mode="login" onSubmit={handleLogin} />}
+            />
+
+            <Route
+              path="/register"
+              element={<AuthPage mode="signup" onSubmit={handleSignup} />}
+            />
             <Route path="*" element={<LandingPage />} />
           </>
         }

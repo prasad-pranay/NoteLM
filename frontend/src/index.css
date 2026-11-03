@@ -76,10 +76,22 @@ body {
 }
 
 /* Scrollbar styling */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-surface-400); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-surface-500); }
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-400);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-500);
+}
 
 /* Glassmorphism utility */
 .glass {
@@ -118,19 +130,30 @@ body {
 /* Decorative mesh background */
 .bg-mesh {
   background-color: var(--color-dash-bg);
-  background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,30%,0.15) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, hsla(339,49%,30%,0.1) 0, transparent 50%);
+  background-image:
+    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.1) 0, transparent 50%);
 }
 
 /* Pulse dot animation */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
-.animate-pulse-dot { animation: pulse-dot 1.5s infinite; }
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s infinite;
+}
 
 .text-glow {
   text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
@@ -148,7 +171,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -158,3 +181,63 @@ body {
   opacity: 1;
 }
 
+
+
+.notification-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #343A3D transparent;
+}
+
+.notification-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.notification-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notification-scrollbar::-webkit-scrollbar-thumb {
+  background: #343A3D;
+  border-radius: 10px;
+}
+
+.notification-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #59636A;
+}
+
+
+.notebook-float {
+  animation: notebookFloat 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes notebookFloat {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notebook-float {
+    animation: none;
+  }
+}
+
+
+/* @keyframes pulse-animate {
+
+  0%,
+  100% {
+    opacity: 0.04;
+  }
+
+  50% {
+    opacity: 0.08;
+  }
+} */
