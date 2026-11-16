@@ -32,3 +32,41 @@ export const checkOllamaHealth = async () => {
 };
 
 export default ollamaConfig;
+
+
+// import { GoogleGenAI } from '@google/genai';
+
+// const ai = new GoogleGenAI({
+//   apiKey: process.env.GEMINI_API_KEY,
+// });
+
+// const CHAT_MODEL =
+//   process.env.GEMINI_CHAT_MODEL || 'gemini-2.5-flash';
+
+// const EMBED_MODEL =
+//   process.env.GEMINI_EMBED_MODEL || 'gemini-embedding-001';
+
+// // Generate text embeddings
+// export const embed = async (text) => {
+//   const response = await ai.models.embedContent({
+//     model: EMBED_MODEL,
+//     contents: text,
+//     config: {
+//       outputDimensionality: 768,
+//     },
+//   });
+
+//   return response.embeddings[0].values;
+// };
+
+// // Generate chat response
+// export const generateResponse = async (prompt) => {
+//   const response = await ai.models.generateContent({
+//     model: CHAT_MODEL,
+//     contents: prompt,
+//   });
+
+//   return response.text;
+// };
+
+// export default { embed, generateResponse };

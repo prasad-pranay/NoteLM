@@ -13,7 +13,7 @@ export default function Layout() {
       <div className={`flex flex-col flex-1 transition-all duration-300 bg-[#0a0a0c] ${sidebarOpen ? 'ml-0 md:ml-64' : 'ml-0 md:ml-20'}`}>
         <Navbar />
         {/* <main className="flex-1 overflow-y-auto p-0  border-l border-t rounded-tl-xl border-[var(--border-main)]"> */}
-        <main className="flex-1 overflow-y-auto p-0  ">
+        <main className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 p-0  ">
           <Outlet />
         </main>
       </div>

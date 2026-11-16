@@ -60,7 +60,7 @@ function FAQSection() {
     return (
         <section
             id="faq"
-            className="relative overflow-hidden px-6 py-24 md:px-10 md:py-36"
+            className="relative overflow-hidden px-6 py-24 md:px-10 md:py-36 bg-gradient-to-b from-[#111618] to-[#0C0F10]"
             style={{ backgroundColor: C.bg }}
         >
             {/* Background glow */}

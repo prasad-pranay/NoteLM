@@ -1,17 +1,6 @@
 import { embed } from './ollamaService.js';
 import { addVectors, queryVectors } from '../config/vectorStore.js';
 
-/**
- * Embedding service — generates and stores embeddings for document chunks.
- */
-
-/**
- * Generate embeddings for all chunks of a source/document and store them in the vector DB.
- * @param {string} indexId - The ID of the index (documentId or notebookId)
- * @param {Array<{content: string, chunkIndex: number}>} chunks - Text chunks
- * @param {object} extraMetadata - Additional metadata to store (e.g., sourceId)
- * @returns {Promise<number>} Number of chunks embedded
- */
 export const embedChunks = async (indexId, chunks, extraMetadata = {}) => {
   const vectorItems = [];
 
@@ -46,20 +35,17 @@ export const embedChunks = async (indexId, chunks, extraMetadata = {}) => {
   return vectorItems.length;
 };
 
-/**
- * Query the vector DB for chunks similar to a query string.
- * @param {string} indexId - The index to search within
- * @param {string} queryText - The user's question
- * @param {number} topK - Number of results to return
- * @returns {Promise<Array<{content: string, score: number, chunkIndex: number, metadata: object}>>}
- */
+
 export const findSimilarChunks = async (indexId, queryText, topK = 5) => {
+  console.log("start query")
   // Generate embedding for the query
   const queryVector = await embed(queryText);
+  console.log("query done",queryVector)
 
   // Search the vector DB
   const results = await queryVectors(indexId, queryVector, topK);
 
+  console.log("result",results)
   // Map results to a clean format
   return results.map((result) => ({
     content: result.item.metadata.content,

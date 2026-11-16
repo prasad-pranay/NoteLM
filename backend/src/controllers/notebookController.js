@@ -159,24 +159,30 @@ export const notebookChat = async (req, res) => {
   const { message, history } = req.body;
 
   try {
+    console.log("1")
     const notebook = await Notebook.findOne({ _id: notebookId, userId: req.user._id });
     if (!notebook) return res.status(404).json({ message: 'Notebook not found' });
-
+    console.log("2")
+    
     // Search across the whole notebook index
     const relevantChunks = await findSimilarChunks(notebookId, message, 10);
-
+    console.log("3")
+    
     if (relevantChunks.length === 0) {
       return res.json({ 
         response: "I couldn't find any relevant information in your notebook to answer this question. Please make sure you've uploaded some content.",
         sources: [] 
       });
     }
-
+    console.log("4")
+    
     const context = relevantChunks
-      .map((c, i) => `[Source: ${c.metadata.title}] (Type: ${c.metadata.type})\n${c.content}`)
-      .join('\n\n---\n\n');
-
+    .map((c, i) => `[Source: ${c.metadata.title}] (Type: ${c.metadata.type})\n${c.content}`)
+    .join('\n\n---\n\n');
+    console.log("5")
+    
     const prompt = chatPrompt(context, history || [], message);
+    console.log("6")
     const response = await generateFromMyModel(prompt);
 
     // Filter sources to only show those that were actually cited in the response

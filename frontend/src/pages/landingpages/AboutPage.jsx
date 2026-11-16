@@ -55,10 +55,52 @@ function TitleLine({ text, index, progress }) {
         </div>
     );
 }
+const slides = [
+    {
+        gif: "/sample/11.png",
+        eyebrow: "01 — Ask naturally",
+        heading: "Just ask.",
+        description:
+            "Ask questions in your own words. No complicated searches, no digging through folders.",
+        buttons: [
+            { label: "Explore questions", href: "#questions" },
+            { label: "Learn more", href: "#features" },
+        ],
+    },
+    {
+        gif: "/sample/3.png",
+        eyebrow: "02 — Your documents",
+        heading: "Your knowledge, connected.",
+        description:
+            "Bring your documents together and turn scattered information into something you can actually understand.",
+        buttons: [
+            { label: "Explore documents", href: "#documents" },
+        ],
+    },
+    {
+        gif: "/sample/12.png",
+        eyebrow: "03 — Understand deeply",
+        heading: "Answers with context.",
+        description:
+            "Get answers grounded in your own documents, with the context and references that matter.",
+        buttons: [
+            { label: "See how it works", href: "#how-it-works" },
+        ],
+    },
+    {
+        gif: "/sample/13.png",
+        eyebrow: "04 — Beyond searching",
+        heading: "Less searching. More understanding.",
+        description:
+            "Stop jumping between tabs. Spend your time understanding information instead of hunting for it.",
+        buttons: [
+            { label: "Get started", href: "#start" },
+        ],
+    },
+];
 
-export default function About({
-    slides = [],
-}) {
+
+export default function About() {
     const sectionRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
 

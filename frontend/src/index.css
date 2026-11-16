@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+html{
+  @apply scrollbar-thin scrollbar-thumb-neutral-500 scrollbar-track-transparent;
+}
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Crimson Pro", "Crimson Text", Georgia, serif;
@@ -29,7 +32,6 @@
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
 
-  /* Dashboard Specific Colors */
   --color-dash-bg: #0A0C10;
   --color-dash-card: #12141C;
   --color-dash-border: #1E222A;
@@ -76,7 +78,7 @@ body {
 }
 
 /* Scrollbar styling */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 3px;
 }
 
@@ -91,7 +93,7 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-surface-500);
-}
+} */
 
 /* Glassmorphism utility */
 .glass {

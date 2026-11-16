@@ -432,7 +432,7 @@ const NoteContentShow = () => {
           activeSource.metadata?.fileType === 'pdf' ? (
 
           <iframe
-            src={`http://localhost:5000/${activeSource.metadata.filePath}`}
+            src={`/api/${activeSource.metadata.filePath}`}
             className="w-full h-full border-none bg-[#101214]"
             title={activeSource.title}
           />

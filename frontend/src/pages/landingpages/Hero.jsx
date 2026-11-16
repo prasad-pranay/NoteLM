@@ -22,6 +22,7 @@ import {
     ShieldCheck,
     Layers,
 } from "lucide-react";
+import FeaturesGrid from "./HeroBottom";
 
 // ─────────────────────────────────────────────────────────────
 // DESIGN TOKENS
@@ -334,27 +335,6 @@ function HeroHeadline() {
     );
 }
 
-function BottomCard({ Icon, title, description }) {
-    return (
-        <div className="group flex flex-1 items-start gap-3 px-5 py-10
-                    border-r border-black/10 last:border-r-0
-                    transition-all duration-300 hover:bg-black/[0.025]">
-
-            <Icon size={30} strokeWidth={1} className="text-[#a77b13] group-hover:scale-120 transition duration-200" />
-
-            <div className="min-w-0">
-                <p className="text-sm font-normal tracking-tight text-[#fff]">
-                    {title}
-                </p>
-
-                <p className="mt-1 text-[9px] uppercase tracking-wider leading-relaxed text-white/60">
-                    {description}
-                </p>
-            </div>
-        </div>
-    );
-}
-
 
 // ─────────────────────────────────────────────────────────────
 // MAIN HERO SECTION
@@ -575,8 +555,8 @@ export default function HeroSection() {
 
 
 
-            <div className="flex flex-wrap justify-center gap-10 overflow-hidden">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 4, duration: 1 }} >
+            <div className="flex flex-wrap justify-center gap-10 mb-20 overflow-hidden">
+                <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale:1 }} exit={{opacity:0,scale:0}} viewport={{ once: false, amount: 0.3 }} transition={{ duration: .5 }} >
 
                     <Link
                         to="/register"
@@ -647,34 +627,7 @@ export default function HeroSection() {
                     Explore More About it
                 </a> */}
             </div>
-
-            <div className="grid grid-cols-2 md:flex items-center w-full mt-10 bg-[#0C0F10] z-[100]">
-                <BottomCard
-                    Icon={MessageCircle}
-                    title="Ask Questions"
-                    description="Get answers immediately"
-                />
-                <div className="hidden md:block w-px h-20 mx-10 bg-white/10" />
-                <BottomCard
-                    Icon={Star}
-                    title="Summarize"
-                    description="Understand faster"
-                />
-                <div className="hidden md:block w-px h-20 mx-10 bg-white/10" />
-                <BottomCard
-                    Icon={Layers}
-                    title="Generate flashcards"
-                    description="Revise smarter"
-                />
-                <div className="hidden md:block w-px h-20 mx-10 bg-white/10" />
-                <BottomCard
-                    Icon={ShieldCheck}
-                    title="Create quizzes"
-                    description="Test your knowledge"
-                />
-            </div>
-            {/* <p className="text-center font-light text-[9px] uppercase opacity-70 my-10">& Many More</p> */}
-
+            <FeaturesGrid/>
 
         </section>
     );

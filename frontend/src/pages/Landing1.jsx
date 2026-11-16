@@ -14,6 +14,7 @@ import { Menu, X } from "lucide-react";
 import AnalyticsSection from "./landingpages/Analytics";
 import SmoothScroll from "./landingpages/SmoothScroll";
 import { useLenis } from "lenis/react";
+import HowItWorks from "./landingpages/howitworks";
 
 function Footer() {
     const [time, setTime] = useState(() => new Date());
@@ -166,6 +167,7 @@ function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const navLinks = [
+        { name: "How It works", href: "how-it-works" },
         { name: "Features", href: "about" },
         { name: "Quizzes", href: "quiz" },
         { name: "FAQ's", href: "faq" },
@@ -174,7 +176,7 @@ function Header() {
     const closeMenu = () => setMenuOpen(false);
 
     return (
-        <header className="stick top-0 z-[1000] w-full bg-[#0C0F10]/95 backdrop-blur-xl borderb border-[#1E2628]">
+        <motion.header initial={{opacity:0}} animate={{opacity:1}} transition={{duration:2,delay:3}} className="stick top-0 z-[1000] w-full bg-[#0C0F10]/95 backdrop-blur-xl borderb border-[#1E2628]">
             <div className="px-5 md:px-10 py-4 md:py-5 flex items-center justify-between">
 
                 {/* Logo */}
@@ -290,35 +292,17 @@ function Header() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </motion.header>
     );
 }
 
-
-// <header className="py-5 bg-[#0C0F10] px-5 flex w-full items-center sticy top-0 z-[1000]">
-//     {/* logo */}
-//     <div className="flex gap-2 items-center">
-//         <img src="/icon.png" alt="" className="h-10" />
-//         <p className="font-bold text-lg uppercase">Notelm</p>
-//     </div>
-//     {/* right sides */}
-//     <div className="flex items-center ml-auto">
-//         {/* nav links */}
-//         <div className="flex items-center gap-10">
-//             <p className="uppercase text-xs font-semibold tracking-wider">Features</p>
-//             <p className="uppercase text-xs font-semibold tracking-wider">How it works</p>
-//             <p className="uppercase text-xs font-semibold tracking-wider">FAQ's</p>
-//         </div>
-//         <div className="w-px bg-white h-2 mx-10" />
-//         <button className="bg-[#C6A44E] px-5 py-3 rounded-sm text-xs uppercase font-bold text-black tracking-wider">Get Started</button>
-//     </div>
-// </header>
 export default function Landing1() {
     return (
         <SmoothScroll>
-            <Header />
+            <Header /> 
             <HeroSection />
-            <About slides={slides} />
+            <About />
+            <HowItWorks/>
             <QuizExperience onAskFurther={async (data) => { }} />
             <AnalyticsSection />
             <CTASection />
@@ -331,49 +315,6 @@ export default function Landing1() {
 
 
 
-const slides = [
-    {
-        gif: "/gifs/ask.gif",
-        eyebrow: "01 — Ask naturally",
-        heading: "Just ask.",
-        description:
-            "Ask questions in your own words. No complicated searches, no digging through folders.",
-        buttons: [
-            { label: "Explore questions", href: "#questions" },
-            { label: "Learn more", href: "#features" },
-        ],
-    },
-    {
-        gif: "/gifs/document.gif",
-        eyebrow: "02 — Your documents",
-        heading: "Your knowledge, connected.",
-        description:
-            "Bring your documents together and turn scattered information into something you can actually understand.",
-        buttons: [
-            { label: "Explore documents", href: "#documents" },
-        ],
-    },
-    {
-        gif: "/gifs/answer.gif",
-        eyebrow: "03 — Understand deeply",
-        heading: "Answers with context.",
-        description:
-            "Get answers grounded in your own documents, with the context and references that matter.",
-        buttons: [
-            { label: "See how it works", href: "#how-it-works" },
-        ],
-    },
-    {
-        gif: "/gifs/internet.gif",
-        eyebrow: "04 — Beyond searching",
-        heading: "Less searching. More understanding.",
-        description:
-            "Stop jumping between tabs. Spend your time understanding information instead of hunting for it.",
-        buttons: [
-            { label: "Get started", href: "#start" },
-        ],
-    },
-];
 
 
 

@@ -12,6 +12,7 @@ import {
 } from 'react-icons/hi2'
 
 import ReactMarkdown from 'react-markdown'
+import ChatMarkdown from '../components/ChatMarkdown'
 
 const NoteChat = () => {
   const {
@@ -305,9 +306,10 @@ const NoteChat = () => {
                     prose-blockquote:border-[#eab42e]/40
                     prose-blockquote:text-[#929da4]
                   ">
-                    <ReactMarkdown>
+                    {/* <ReactMarkdown>
                       {msg.content}
-                    </ReactMarkdown>
+                    </ReactMarkdown> */}
+                    <ChatMarkdown content={msg.content} />
                   </div>
 
                 </div>
@@ -505,7 +507,7 @@ const NoteChat = () => {
         </form>
 
       </div>
-
+        <div className='h-10' />
     </aside>
   )
 }

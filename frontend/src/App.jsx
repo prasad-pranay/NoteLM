@@ -23,6 +23,7 @@ import Landing1 from './pages/Landing1.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import api from './api/axios.js';
 import toast from 'react-hot-toast';
+import 'katex/dist/katex.min.css';
 
 // function ProtectedRoute({ children }) {
 //   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -86,6 +87,7 @@ export default function App() {
       {splash ? <SplashScreen /> : <Routes>
         <Route path="/landing1" element={<LandingPage />} />
         <Route path="/landing" element={<Landing1 />} />
+        <Route path="/splash" element={<SplashScreen />} />
         {
           !isAuthenticated && <>
             <Route path="/" element={<Landing1 />} />
@@ -100,7 +102,7 @@ export default function App() {
               path="/register"
               element={<AuthPage mode="signup" onSubmit={handleSignup} />}
             />
-            <Route path="*" element={<LandingPage />} />
+            <Route path="*" element={<Landing1 />} />
           </>
         }
         {isAuthenticated &&

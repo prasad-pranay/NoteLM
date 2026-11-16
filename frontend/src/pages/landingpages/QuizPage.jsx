@@ -366,7 +366,7 @@ function QuizExperience({ onAskFurther }) {
         <section
             id="quiz"
             ref={sectionRef}
-            className="relative h-[500vh] bg-gradient-to-b from-[#0B0B0B] to-[#111618] text-white"
+            className="relative h-[500vh] bg-gradient-to-b from-[#000] to-[#111618] text-white"
         >
             <div className="sticky top-0 h-screen overflow-hidden">
 

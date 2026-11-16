@@ -59,7 +59,7 @@ export default function Navbar() {
   const avatarUrl = user?.avatar
     ? user.avatar.startsWith('http')
       ? user.avatar
-      : `http://localhost:5000${user.avatar}`
+      : `/api/${user.avatar}`
     : '/student.png';
 
   const handleLogout = () => {
