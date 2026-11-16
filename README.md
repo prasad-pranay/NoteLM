@@ -18,7 +18,11 @@
 <img src="frontend/public/sample/0.png" />
 
 ---
-<p align="center"> <strong>live url</strong> </p>
+<p align="center">
+  <a href="https://mynotelm.vercel.app/"><strong>🌐 View Live Demo →</strong></a>
+  <br/>
+  <sub>Note: The live demo currently showcases the frontend only. Backend functionality requires a locally configured backend server.</sub>
+</p>
 
 
 ## Table of Contents
